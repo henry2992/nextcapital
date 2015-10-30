@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @league.name %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @league.content %>
+
+  <br>
+  El Jackpot es este:
+
+  <% @league.jackpots.each do |j| %>
+      <tr>
+        <td><%= j.balance %></td>
+        <br>
+      </tr>
+  <% end %>
+
+   <% @league.jackpots.each do |t| %>
+     <% t.tickets.each do |x| %>
+        <tr>
+          <td>Ticket numero <%= x.id %></td>
+          <td>ID:<%= x.jackpot_id%>
+          <td> Price<%= x.price %></td>
+          <td> Status: <%= x.status %></td>
+          <td> Bowler:<%= x.bowler_id %></td>
+          <br>
+        </tr>
+    <% end %>
+  <% end %>
+
+</p>
+
+<% @league.bowlers.each do |bowler| %>
+      <tr> Nombre:
+        <td><%= bowler.name %></td>
+        <td>id <%= bowler.id %></td>
+        <%= button_to "Buy Ticket", buy_league_path(@league), :method => :post %>
+        <br>
+      </tr>
+ <% end %>
+
+
+
+
+<%= button_to "Draw Winner", draw_league_path(@league), :method => :post %>
+
+
+
+<%= link_to 'Edit', edit_league_path(@league) %> |
+<%= link_to 'Back', leagues_path %>

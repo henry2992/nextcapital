@@ -37,7 +37,7 @@
 <% @league.bowlers.each do |bowler| %>
       <tr> Nombre:
         <td><%= bowler.name %></td>
-        <td>id <%= bowler.id %></td>
+        <td>id: <%= bowler.id %></td>
         <%= button_to "Buy Ticket", buy_league_path(@league), :method => :post %>
         <br>
       </tr>

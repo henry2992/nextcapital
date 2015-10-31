@@ -68,16 +68,14 @@ class LeaguesController < ApplicationController
 
  
 
-  # def buy
-  #   @league = League.find params[:id]
-  #   @jackpot = Jackpot.find params[:id]
+  def buy
+   
+   @ticket = Ticket.new
+   @ticket.save
 
-  #   @current_id = @jackpot.id
-    
-  #   add_ticket(@current_id)
+    redirect_to league_path
 
-  #   redirect_to @league
-  # end
+  end
 
  
 

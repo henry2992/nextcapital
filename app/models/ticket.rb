@@ -10,4 +10,5 @@ class Ticket < ActiveRecord::Base
 	    current_ticket.bowler_id = current_bowler.id
 	    current_ticket.save
 	 end
+	 
 end

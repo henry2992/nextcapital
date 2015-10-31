@@ -1,4 +1,5 @@
 class Ticket < ActiveRecord::Base
+	belongs_to :league
 	belongs_to :jackpot
 	belongs_to :bowler
 

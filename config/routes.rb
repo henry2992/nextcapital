@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :leagues do
+  resources :tickets do
     member do
       get 'buy'
     end
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     end
   end
 
-  post "leagues/:id/buy" => "leagues#buy"
+  post "tickets/:id/buy" => "tickets#buy"
   post "leagues/:id/add" => "leagues#add"
   post "leagues/:id/draw" => "leagues#draw"
 

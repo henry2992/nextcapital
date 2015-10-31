@@ -19,12 +19,13 @@
       </tr>
   <% end %>
 
-   <% @league.jackpots.each do |t| %>
+   <% @league.bowlers.each do |t| %>
      <% t.tickets.each do |x| %>
         <tr>
           <td>Ticket numero <%= x.id %></td>
-          <td>ID:<%= x.jackpot_id%>
-          <td> Price<%= x.price %></td>
+          <td>League ID:<%= x.league_id%>
+          <td>JAckpot ID:<%= x.jackpot_id%>
+          <td> Price: <%= x.price %></td>
           <td> Status: <%= x.status %></td>
           <td> Bowler:<%= x.bowler_id %></td>
           <br>
@@ -37,8 +38,9 @@
 <% @league.bowlers.each do |bowler| %>
       <tr> Nombre:
         <td><%= bowler.name %></td>
-        <td>id: <%= bowler.id %></td>
-        <%= button_to "Buy Ticket", buy_league_path(@league), :method => :post %>
+     
+        <td><%= button_to 'Buy Ticket', {:controller => "tickets", :action => "buy", :ticket_id => bowler.id, :league_id => @league} , :method=>:post  %></td>
+       
         <br>
       </tr>
  <% end %>

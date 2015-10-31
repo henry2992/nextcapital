@@ -68,14 +68,6 @@ class LeaguesController < ApplicationController
 
  
 
-  def buy
-   
-   @ticket = Ticket.new
-   @ticket.save
-
-    redirect_to league_path
-
-  end
 
  
 
@@ -88,8 +80,6 @@ class LeaguesController < ApplicationController
     
     @winner = Jackpot.pick_winner(@current_id)
 
-    # flash[:notice] = @winner.id
-    # flash[:notice] = @winner.jackpot_id
 
     flash[:notice] = [@winner.id]
     flash[:notice] << @winner.jackpot_id

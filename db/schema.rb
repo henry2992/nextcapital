@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20151030202119) do
   create_table "tickets", force: :cascade do |t|
     t.integer  "jackpot_id"
     t.integer  "bowler_id"
+    t.integer  "league_id"
     t.decimal  "price",      precision: 8, scale: 2, default: 10.0
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(version: 20151030202119) do
 
   add_index "tickets", ["bowler_id"], name: "index_tickets_on_bowler_id"
   add_index "tickets", ["jackpot_id"], name: "index_tickets_on_jackpot_id"
+  add_index "tickets", ["league_id"], name: "index_tickets_on_league_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

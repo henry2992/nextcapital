@@ -3,13 +3,29 @@ class Ticket < ActiveRecord::Base
 	belongs_to :jackpot
 	belongs_to :bowler
 
+	def self.pick_winner(id)
+	   current_jackpot = Jackpot.find_by_id(id)	
 
-	 def self.add_bowler(ticket_id, bowler_id)
-	    current_ticket = Ticket.find_by_id(ticket_id)
-	    current_bowler = Bowler.find_by_id(bowler_id)
+	   tickets = Ticket.where(jackpot_id: current_jackpot)
 
-	    current_ticket.bowler_id = current_bowler.id
-	    current_ticket.save
-	 end
+	   winning_ticket = tickets.sample
+	   winning_ticket.status = true
+	   winning_ticket.save
+
+	   strike = 10
+
+	   if strike = 10
+	   		current_jackpot.balance = 0
+	   		tickets.destroy_all
+	   else	
+	   		current_jackpot.balance = current_jackpot.balance / 2
+	   		tickets.destroy_all
+	   end
+	   
+	   current_jackpot.save
+
+	   return winning_ticket
+
+	end
 	 
 end

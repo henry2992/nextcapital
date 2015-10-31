@@ -65,10 +65,6 @@ class LeaguesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
- 
-
-
  
 
   def draw
@@ -76,16 +72,27 @@ class LeaguesController < ApplicationController
 
     @jackpot = Jackpot.find params[:id]
 
-    @current_id = @jackpot.id
     
-    @winner = Jackpot.pick_winner(@current_id)
+    @winner = Ticket.pick_winner(@jackpot.id)
+
+    @win_bowler = bowler_winner(@winner.bowler_id)
 
 
-    flash[:notice] = [@winner.id]
-    flash[:notice] << @winner.jackpot_id
+    flash[:notice] = ["The winning tikcet id is: "]
+    flash[:notice] << @winner.id
+    flash[:notice] << "The owner of the ticket is: "
+    flash[:notice] << @winner.bowler_id
+    flash[:notice] << @win_bowler.name
 
     redirect_to @league
   end
+
+  def bowler_winner(id)
+    win_bowler = Bowler.find_by_id(id) 
+    return win_bowler
+  end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

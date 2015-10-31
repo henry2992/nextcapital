@@ -1,4 +1,8 @@
+
+
+
 <p id="notice"><%= notice %></p>
+
 
 <p>
   <strong>Name:</strong>
@@ -18,12 +22,23 @@
         <br>
       </tr>
   <% end %>
+ 
+ <% if notice %>
 
-   <% @league.bowlers.each do |t| %>
+    <%= flash[:notice].join(" ") %>
+
+    
+
+
+<% end %>
+
+
+
+   <% @league.jackpots.each do |t| %>
      <% t.tickets.each do |x| %>
         <tr>
           <td>Ticket numero <%= x.id %></td>
-          <td>League ID:<%= x.league_id%>
+          <td>League ID:<%= x.league_id%></td>
           <td>JAckpot ID:<%= x.jackpot_id%>
           <td> Price: <%= x.price %></td>
           <td> Status: <%= x.status %></td>

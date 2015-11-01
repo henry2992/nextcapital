@@ -68,21 +68,26 @@ class LeaguesController < ApplicationController
  
 
   def draw
-    @league = League.find params[:id]
+    @league = League.find(params[:id])
 
-    @jackpot = Jackpot.find params[:id]
-
+    @jackpot = Jackpot.find(params[:id])
     
+   
     @winner = Ticket.pick_winner(@jackpot.id)
 
-    @win_bowler = bowler_winner(@winner.bowler_id)
-
-
-    flash[:notice] = ["The winning tikcet id is: "]
-    flash[:notice] << @winner.id
-    flash[:notice] << "The owner of the ticket is: "
-    flash[:notice] << @winner.bowler_id
-    flash[:notice] << @win_bowler.name
+    if @winner.present?
+      @win_bowler = bowler_winner(@winner[0].bowler_id)
+      flash[:notice] = ["The winning tikcet id is: "]
+      flash[:notice] << @winner[0].id
+      flash[:notice] << "The owner of the ticket is: "
+      flash[:notice] << @winner[0].bowler_id
+      flash[:notice] << @win_bowler.name
+      flash[:notice] << "Strike:"
+      flash[:notice] << @winner[1]
+    else
+      flash[:notice] = ["There is no tickets in the current Jackpot"]
+    end
+    
 
     redirect_to @league
   end

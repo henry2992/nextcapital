@@ -1,20 +1,23 @@
 class MembershipsController < ApplicationController
- 
+  def join
 
-  def new
-      @league = League.find params[:league_id]
-      @membership = Membership.new
-    end
 
-    def create
-      @league = League.find params[:league_id]
-      @membership = Membership.new(membership_params)
-    end
+  	   @membership = Membership.new
 
-    private
 
-    def membership_params
-        params.require(:membership).merge(league_id: params[:league_id], bowler_id: bowler.id)
-    end
+	   @bowler = Bowler.find(params[:bowler_id])
 
+	   @league = League.find(params[:league_id])
+
+
+
+	   @membership.bowler_id = @bowler.id
+	   @membership.league_id = @league.id
+	   @membership.name = @bowler.name
+	   
+	   @membership.save
+
+
+	   redirect_to @league
+  end
 end

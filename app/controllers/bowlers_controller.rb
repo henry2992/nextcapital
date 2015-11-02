@@ -10,6 +10,7 @@ class BowlersController < ApplicationController
   # GET /bowlers/1
   # GET /bowlers/1.json
   def show
+    @leagues = League.all
   end
 
   # GET /bowlers/new

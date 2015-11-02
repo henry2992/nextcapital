@@ -12,7 +12,15 @@ class LeaguesController < ApplicationController
   # GET /leagues/1
   # GET /leagues/1.json
   def show
+ 
+    @league = League.find(params[:id])
+    @members = @league.memberships
+
+ 
   end
+
+ 
+
 
   # GET /leagues/new
   def new
@@ -33,6 +41,7 @@ class LeaguesController < ApplicationController
     respond_to do |format|
       if @league.save
         @jackpot = @league.jackpots.create(jackpot_params)
+        # @membership = @league.memberships.create
         format.html { redirect_to @league, notice: 'League was successfully created.' }
         format.json { render :show, status: :created, location: @league }
       else
@@ -107,7 +116,7 @@ class LeaguesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def league_params
-      params.require(:league).permit(:name, :content)
+      params.require(:league).permit(:name, :content, :membership_id)
     end
 
     

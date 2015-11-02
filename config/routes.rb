@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'memberships/join'
+
   get 'tickets/buy'
 
   resources :bowlers
@@ -31,9 +33,16 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :memberships do
+    member do
+      get 'join'
+    end
+  end
+
   post "tickets/:id/buy" => "tickets#buy"
   post "leagues/:id/add" => "leagues#add"
   post "leagues/:id/draw" => "leagues#draw"
+  post "memberships/:id/join" => "memberships#join"
 
   devise_for :users, controllers: { registrations: "registrations" }
  

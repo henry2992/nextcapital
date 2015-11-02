@@ -21,11 +21,6 @@
       </tr>
   <% end %>
  
- <% if notice %>
-
-    <%= flash[:notice].join(" ") %>
-
-<% end %>
 
 
 
@@ -45,15 +40,28 @@
 
 </p>
 
-<% @league.bowlers.each do |bowler| %>
-      <tr> Nombre:
-        <td><%= bowler.name %></td>
-     
-        <td><%= button_to 'Buy Ticket', {:controller => "tickets", :action => "buy", :ticket_id => bowler.id, :league_id => @league} , :method=>:post  %></td>
-       
-        <br>
-      </tr>
- <% end %>
+<% if notice.kind_of?(Array) %>
+
+  <p id="notice"><%= notice %></p>
+
+   <%= flash[:notice].join(" ") %>
+  
+<% end %>
+
+
+<% @members.each do |t| %>
+  
+        <tr>
+          <td>Numero de Membresia: <%= t.id %></td>
+          <td>Numero de Liga: <%= t.league_id %></td>
+          <td>Numero de Bowler: <%= t.bowler_id %></td>
+          <td>Numero de Bowler: <%= t.name %></td>
+           <td><%= button_to 'Buy Ticket', {:controller => "tickets", :action => "buy", :ticket_id => t.bowler_id , :league_id => @league} , :method=>:post  %></td>
+          <br>
+        </tr>
+  
+  <% end %>
+
 
 
 

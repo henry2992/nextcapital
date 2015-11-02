@@ -1,13 +1,8 @@
 require 'test_helper'
 
 class MembershipsControllerTest < ActionController::TestCase
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
-  test "should get create" do
-    get :create
+  test "should get join" do
+    get :join
     assert_response :success
   end
 

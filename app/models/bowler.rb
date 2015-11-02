@@ -1,5 +1,8 @@
 class Bowler < ActiveRecord::Base
-  	belongs_to :league
+
+	has_many :memberships
+	has_many :leagues, :through  =>  :memberships
+
 	has_many :tickets
 	
 
@@ -9,5 +12,7 @@ class Bowler < ActiveRecord::Base
 	    ticket.bowler_id = current_bowler 
 	    ticket.save
 	end
+
+	
 
 end

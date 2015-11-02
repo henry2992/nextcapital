@@ -3,8 +3,15 @@
 <p>
   <strong>Name:</strong>
   <%= @bowler.name %>
-  <%= @bowler.league_id %>
 </p>
 
+
+<% @leagues.each do |l| %>
+    <p> League:<%= l.name %></p>
+    <%= button_to 'Join', {:controller => "memberships", :action => "join", :league_id => l.id, :bowler_id => @bowler} , :method=>:post  %>
+<% end %>
+
+
+	
 <%= link_to 'Edit', edit_bowler_path(@bowler) %> |
 <%= link_to 'Back', bowlers_path %>

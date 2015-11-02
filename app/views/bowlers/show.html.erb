@@ -1,10 +1,16 @@
-<p id="notice"><%= notice %></p>
+
 
 <p>
   <strong>Name:</strong>
   <%= @bowler.name %>
 </p>
 
+
+<% if notice.kind_of?(Array) %>
+
+   <%= flash[:notice].join(" ") %>
+  
+<% end %>
 
 <% @leagues.each do |l| %>
     <p> League:<%= l.name %></p>

@@ -17,7 +17,10 @@ class MembershipsController < ApplicationController
 	   
 	   @membership.save
 
+	   flash[:notice] = [ @bowler.name ]
+	   flash[:notice] << ["has joined League: "]
+       flash[:notice] << @league.name
 
-	   redirect_to @league
+	   redirect_to @bowler
   end
 end

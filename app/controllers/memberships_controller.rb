@@ -1,7 +1,6 @@
 class MembershipsController < ApplicationController
+  
   def join
-
-
   	   @membership = Membership.new
 
 

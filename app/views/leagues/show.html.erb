@@ -12,16 +12,20 @@
   <%= @league.content %>
 
   <br>
-  El Jackpot es este:
+  Jackpot History
 
   <% @league.jackpots.each do |j| %>
       <tr>
-        <td><%= j.balance %></td>
+        <td><%= j.balance %></td>   
         <br>
       </tr>
   <% end %>
  
-
+  <p>This is the Jackpot to draw
+    <% current_jackpot = @league.jackpots.first %>
+    <%= current_jackpot.id %>
+    <%= button_to "Draw Winner",  {:controller => "leagues", :action => "draw", :jackpot_id => current_jackpot.id}, :method => :post %>
+  </p>
 
 
    <% @league.jackpots.each do |t| %>
@@ -32,7 +36,7 @@
           <td>JAckpot ID:<%= x.jackpot_id%>
           <td> Price: <%= x.price %></td>
           <td> Status: <%= x.status %></td>
-          <td> Bowler:<%= x.bowler_id %></td>
+          <td> Bowler:<%= x.name%></td>
           <br>
         </tr>
     <% end %>
@@ -49,13 +53,15 @@
 <% end %>
 
 
+
+
 <% @members.each do |t| %>
   
         <tr>
           <td>Numero de Membresia: <%= t.id %></td>
           <td>Numero de Liga: <%= t.league_id %></td>
           <td>Numero de Bowler: <%= t.bowler_id %></td>
-          <td>Numero de Bowler: <%= t.name %></td>
+          <td>Nombre del bowler: <%= t.name %></td>
            <td><%= button_to 'Buy Ticket', {:controller => "tickets", :action => "buy", :ticket_id => t.bowler_id , :league_id => @league} , :method=>:post  %></td>
           <br>
         </tr>
@@ -66,9 +72,15 @@
 
 
 
-<%= button_to "Draw Winner", draw_league_path(@league), :method => :post %>
+
+
 
 
 
 <%= link_to 'Edit', edit_league_path(@league) %> |
 <%= link_to 'Back', leagues_path %>
+
+
+
+
+

@@ -12,15 +12,9 @@ class LeaguesController < ApplicationController
   # GET /leagues/1
   # GET /leagues/1.json
   def show
- 
     @league = League.find(params[:id])
     @members = @league.memberships
-
- 
   end
-
- 
-
 
   # GET /leagues/new
   def new
@@ -79,10 +73,13 @@ class LeaguesController < ApplicationController
   def draw
     @league = League.find(params[:id])
 
-    @jackpot = Jackpot.find(params[:id])
+    @jackpot = Jackpot.find(params[:jackpot_id])
     
-   
+
     @winner = Ticket.pick_winner(@jackpot.id)
+    
+
+    
 
     if @winner.present?
       @win_bowler = bowler_winner(@winner[0].bowler_id)
@@ -96,7 +93,13 @@ class LeaguesController < ApplicationController
     else
       flash[:notice] = ["There is no tickets in the current Jackpot"]
     end
-    
+
+    if @winner.present?
+      @new_jackpot = Jackpot.new
+      @new_jackpot.league_id = @league.id
+      @new_jackpot.balance = @winner[2]
+      @new_jackpot.save
+    end
 
     redirect_to @league
   end

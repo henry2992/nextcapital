@@ -11,11 +11,11 @@ class TicketsController < ApplicationController
 
 	   @league = League.find(params[:league_id])
 
-	   @current_bowler = @bowler.id
-	   @current_jackpot = @league.id
 
-	   @ticket.bowler_id = @current_bowler
-	   @ticket.jackpot_id = @current_jackpot
+	   @ticket.bowler_id = @bowler.id
+	   @ticket.name = @bowler.name
+	   @ticket.jackpot_id = @league.id
+
 
 	   @ticket.save
 

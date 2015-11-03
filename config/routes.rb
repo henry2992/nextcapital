@@ -6,13 +6,15 @@ Rails.application.routes.draw do
   get 'tickets/buy'
 
   resources :bowlers
+  
+
   get 'bowlers/new'
 
   root 'home#index'
 
 
 
-  resources :leagues
+  resources :leagues, only: [:destroy]
 
 
   resources :leagues do

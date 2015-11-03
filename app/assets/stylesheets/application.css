@@ -15,3 +15,10 @@
  */
 
 
+.field_with_errors{
+	color: red !important;
+	padding: 0px !important;
+	margin: 0px;
+	background-color: transparent !important;
+	display: block !important;
+}

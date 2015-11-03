@@ -1,30 +1,79 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Listing Leagues</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="container">
+        <!-- Section 1 App -->
+        <div id="league-section-info">
+          <h1 >Ready to have fun? </h1>
+          <h4> Create your own League, add bowlers, buy tickets and get the change to win the Jackpot.
+          </h4>
+          <div class="create-league">
+              <%= link_to 'Create a League', new_league_path, :class => "create-league-link"  %>
+          </div>
+        </div>
+        <div class="line-section"></div>
+
+      <div class="row">
+          <% counter = 0 %>
+          <% @leagues.each do |league| %>
+
+
+            <% counter = counter + 1 %>
+
+             <div class="col-md-4 col-sm-6">
+              <div class="leagues">
+                <div class="leagues-holder">
+                  <%= image_tag("league1.jpg", :alt => "League") %>
+                  <div class="current-jackpot">Jackpot</div>
+                </div>
+                <div class="leagues-info">
+                  <h1><%= league.name %></h1>
+                  <p><%= league.content %></p>
+                </div>
+                <div>
+                  <div class="league-login">
+                    <%= link_to 'Show League', league, :class => "league-login-link"  %>
+                  </div>
+                  <div class="league-login">
+                    <%= link_to 'Edit League', edit_league_path(league), :class => "league-login-link" %>
+                 
+                  </div>
+                </div>
+              </div>
+          </div>
+
+              <% if counter == 3 %>
+                  <div class="clearfix"></div>
+                  <% counter = 0%>
+              <% end %>
+          <% end %>
+
+          
+
+         
+      </div>
+
+
+
+      <!--  FOOTER -->
+      <div id="footer-app" >
+        <div class="line-section"></div>
+        <div class="footer-app-content">
+          <p> © Aprende<span class="ruby_color">Rails</span>.com</p>
+          <p> Conecta con nosotros: </p>
+        </div>
+      </div>
+
+
+
 
   <tbody>
-    <% @leagues.each do |league| %>
-      <tr>
-        <td><%= league.name %></td>
-        <td><%= league.content %></td>
-        <td><%= link_to 'Show', league %></td>
-        <td><%= link_to 'Edit', edit_league_path(league) %></td>
-        <td><%= link_to 'Destroy', league, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+
+    
+
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New League', new_league_path %>
-<%= link_to 'New Bowler', bowlers_path %>
+
+

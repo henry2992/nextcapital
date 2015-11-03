@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  root 'home#index'
 
   get 'memberships/join'
 
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
 
   get 'bowlers/new'
 
-  root 'home#index'
+  
 
 
 

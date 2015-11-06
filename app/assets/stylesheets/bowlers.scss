@@ -1,3 +1,81 @@
 // Place all the styles related to the Bowlers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.bowlers{
+	height: auto;
+	border: 1px grey solid;
+	text-align: center;
+	width: 30% !important;
+	margin-left: 2.5%;
+	margin-top: 25px;
+	margin-bottom: 10px;
+}
+
+.bowler-title-name{
+	text-align: center;
+}
+
+.bowler-name{
+	margin: 20px 0 15px 0 !important; 
+}
+
+.button-bowler{
+	display: block;
+	background-color: #58bf44 ;
+	color: white;
+	margin: 10px 0 15px 25%;
+	width: 50%;
+	height: 30px;
+	font-size: 1.25em;
+	line-height: 30px;
+	border-radius: 5px;
+	border: none;
+}
+
+.button-bowler:hover{
+	color: white;
+	text-decoration: none;
+}
+
+.button-create:hover{
+	color: white;
+}
+
+.new-bowler-button{
+	padding: 10px 20px !important;
+  background-color: #199de6;
+  color: white;
+  font-size: 1em;
+  border: none;
+  margin-top: 15px !important;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.league-join-button{
+  width: 80%;
+  background-color: rgb(88, 191, 68);
+  margin-left: 10%;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border: none;
+  color: white;
+}
+
+.no-bowlers{
+	height: 100px;
+}
+.no-bowlers h3{
+	margin: 25px 0 25px 0 !important;
+}
+
+.draw-winner:hover{
+	color: white;
+	text-decoration: none;
+}
+

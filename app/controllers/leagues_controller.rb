@@ -6,13 +6,22 @@ class LeaguesController < ApplicationController
   # GET /leagues.json
   def index
     @leagues = League.all
-
+    @league = League.new
   end
 
   # GET /leagues/1
   # GET /leagues/1.json
   def show
     @league = League.find(params[:id])
+
+    @jackpot_league = @league.jackpots.first
+
+    @jackpots = @league.jackpots.recent_jackpot
+
+    @jackpot = Jackpot.find(params[:id])
+
+    @tickets = @league.tickets.recent_tickets
+
     @members = @league.memberships
   end
 
@@ -35,12 +44,13 @@ class LeaguesController < ApplicationController
     respond_to do |format|
       if @league.save
         @jackpot = @league.jackpots.create(jackpot_params)
-        # @membership = @league.memberships.create
-        format.html { redirect_to @league, notice: 'League was successfully created.' }
+        format.html { redirect_to leagues_path, notice: 'League was successfully created.' }
         format.json { render :show, status: :created, location: @league }
+
       else
         format.html { render :new }
         format.json { render json: @league.errors, status: :unprocessable_entity }
+
       end
     end
   end
@@ -50,13 +60,14 @@ class LeaguesController < ApplicationController
   def update
     respond_to do |format|
       if @league.update(league_params)
-        format.html { redirect_to @league, notice: 'League was successfully updated.' }
-        format.json { render :show, status: :ok, location: @league }
+        format.html { redirect_to leagues_path, notice: 'League was successfully updated.' }
+        format.json { render :show, status: :ok, location: @league} 
       else
         format.html { render :edit }
         format.json { render json: @league.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # DELETE /leagues/1
@@ -78,17 +89,13 @@ class LeaguesController < ApplicationController
 
     @winner = Ticket.pick_winner(@jackpot.id)
     
-
-    
-
     if @winner.present?
       @win_bowler = bowler_winner(@winner[0].bowler_id)
-      flash[:notice] = ["The winning tikcet id is: "]
+      flash[:notice] = ["The winning Ticket id is: "]
       flash[:notice] << @winner[0].id
-      flash[:notice] << "The owner of the ticket is: "
-      flash[:notice] << @winner[0].bowler_id
+      flash[:notice] << ". The owner of the ticket is: "
       flash[:notice] << @win_bowler.name
-      flash[:notice] << "Strike:"
+      flash[:notice] << ". Strike:"
       flash[:notice] << @winner[1]
     else
       flash[:notice] = ["There is no tickets in the current Jackpot"]
@@ -98,6 +105,7 @@ class LeaguesController < ApplicationController
       @new_jackpot = Jackpot.new
       @new_jackpot.league_id = @league.id
       @new_jackpot.balance = @winner[2]
+      @new_jackpot.payout = @winner[3]
       @new_jackpot.save
     end
 

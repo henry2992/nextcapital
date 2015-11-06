@@ -11,16 +11,18 @@ class TicketsController < ApplicationController
 
 	   @league = League.find(params[:league_id])
 
+	   @jackpot = Jackpot.find(params[:jackpot_id])
 
 	   @ticket.bowler_id = @bowler.id
 	   @ticket.name = @bowler.name
-	   @ticket.jackpot_id = @league.id
+	   @ticket.jackpot_id = @jackpot.id
+	   @ticket.league_id = @league.id
 
 
 	   @ticket.save
 
 
-	   @jackpot = Jackpot.find(params[:league_id])
+	   
 	   
 	   add_money_to_jackpot(@jackpot.id)
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103023614) do
+ActiveRecord::Schema.define(version: 20151105063159) do
 
   create_table "bowlers", force: :cascade do |t|
     t.string   "name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20151103023614) do
     t.decimal  "balance",    precision: 8, scale: 2, default: 0.0
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
+    t.decimal  "payout",     precision: 8, scale: 2
   end
 
   add_index "jackpots", ["league_id"], name: "index_jackpots_on_league_id"
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 20151103023614) do
     t.datetime "updated_at",                                         null: false
     t.boolean  "status",                             default: false
     t.string   "name"
+    t.integer  "strike"
   end
 
   add_index "tickets", ["bowler_id"], name: "index_tickets_on_bowler_id"

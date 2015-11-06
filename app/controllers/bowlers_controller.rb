@@ -5,12 +5,15 @@ class BowlersController < ApplicationController
   # GET /bowlers.json
   def index
     @bowlers = Bowler.all
+    @bowler = Bowler.new
   end
 
   # GET /bowlers/1
   # GET /bowlers/1.json
   def show
     @leagues = League.all
+
+
   end
 
   # GET /bowlers/new
@@ -43,7 +46,7 @@ class BowlersController < ApplicationController
   def update
     respond_to do |format|
       if @bowler.update(bowler_params)
-        format.html { redirect_to @bowler, notice: 'Bowler was successfully updated.' }
+        format.html { redirect_to bowlers_path, notice: 'Bowler was successfully updated.' }
         format.json { render :show, status: :ok, location: @bowler }
       else
         format.html { render :edit }

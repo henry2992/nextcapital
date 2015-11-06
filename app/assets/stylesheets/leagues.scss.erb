@@ -1,0 +1,345 @@
+// Place all the styles related to the Leagues controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+ body{
+  font-size: 30px;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: 'Raleway', 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+#logo_img{
+	width: 225px;
+}
+
+
+/******* LEAGUES SECTION 1 APP *********/
+
+#league-section-info{
+  margin: 80px 0 25px 0;
+  text-align: center;
+}
+
+#league-section-info h1{
+  padding: 0px !important;
+  margin: 0px 0px 10px !important;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 2em;
+  color: #222;
+  letter-spacing: 0.3em;
+}
+#league-section-info h4{
+  box-sizing: border-box;
+  color: #999;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: normal;
+  line-height: 18.8px;
+  margin-bottom: 15px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 3px;
+  text-align: center;
+  text-rendering: optimizelegibility;
+  text-shadow: rgba(0, 0, 0, 0.004) 1px 1px 1px;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-text-size-adjust: none;
+}
+.line-section{
+  width: 100%;
+  height: 1px;
+  background: #EFEFEF none repeat scroll 0% 0%;
+}
+
+.create-league{
+  width: 80%;
+  text-align: center;
+  margin: 20px 0 20px 0;
+  background-color: rgb(38, 192, 190);
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-left: 10%;
+}
+
+.create-league-link{
+
+  display: block;
+  color: white;
+  margin: 0;
+  padding: 0px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 0.8em;
+  font-weight: bolder;
+  text-decoration: none !important;
+}
+
+
+
+.create-league-link:hover{
+  text-decoration: none;
+  color: white;
+}
+
+
+
+/******** LEAGUES SECTION **********/
+
+.leagues{
+  width: 100%;
+  
+  margin-top: 50px;
+  margin-bottom: 25px;
+
+}
+.border{
+  border: 1px solid #F2F2F2;
+}
+.leagues-holder{
+  position: relative;
+}
+.leagues-holder img{
+  width: 100%;
+}
+.current-jackpot{
+  width: 120px;
+  height: 30px;
+  color: white;
+  line-height: 25px;
+  padding: 2px 5px 2px 5px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: rgb(255, 143, 51);
+}
+
+
+.leagues-info{
+  margin-left: 10px;
+  margin-top: 15px;
+  overflow: hidden;
+  height: 75px;
+}
+
+.leagues-info h1{
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  font-size: 1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+}
+
+.leagues-info p{
+  font-size: 0.9em;
+  font-weight: 300;
+  color: #555;
+  line-height: 1.5;
+  margin: 10px 0px 1.5em 0px !important;
+}
+
+
+.league-login{
+  width: 80%;
+  background-color: rgb(88, 191, 68);
+  margin-left: 10%;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.league-login-link{
+  display: block;
+  margin: 0;
+  padding: 0px;
+  height: 35px;
+  line-height: 35px;
+  text-decoration: none !important;
+  font-size: 0.8em;
+  font-weight: bolder;
+  color: white;
+  margin-bottom: 25px;
+}
+.league-login-button{
+  display: block;
+  padding: 0px;
+  height: 35px;
+  line-height: 35px;
+  text-decoration: none !important;
+  font-size: 0.8em;
+  font-weight: bolder;
+  color: white;
+  border: none;
+  margin-left: 10%;
+  margin-bottom: 25px;
+}
+
+.league-login:hover{
+  text-decoration: none !important;
+  color: white !important;
+  background-color: rgb(88, 191, 68) !important;
+}
+
+
+
+
+/******** SHOW ACTION ON LEAGUES **********/
+
+.league-title{
+  padding: 15px !important;
+  font-size: 1.5em;
+  text-transform: capitalize;
+  font-style: italic;
+  text-align: center !important;
+  background-color: rgb(204,204,204);
+
+}
+
+#bowlers_section{
+  text-align: center;
+}
+
+.draw-winner{
+  padding: 10px 20px !important;
+  background-color: #199de6;
+  color: white;
+  font-size: 1em;
+  border: none;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.current-jackpot-league{
+  border: 1px black solid;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<%= asset_path('leagues.jpg')%>);
+  color: white;
+  font-weight: 300;
+  background-position: center center;
+  background-repeat: none;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  position: relative;
+}
+
+/*League Info Section*/
+
+#container_leagues{
+  width: 100%;
+  text-align: center
+}
+
+#league-info-holder{
+  text-align: center;
+}
+
+.current-jackpot-league h1{
+  padding: 15px !important;
+  font-size: 3.25em;
+  text-transform: capitalize;
+}
+
+.current-jackpot-league p{
+  padding: 10px !important;
+  font-size: 1.75em;
+}
+
+.create-btn{
+  padding: 10px 20px !important;
+  background-color: #199de6;
+  color: white;
+  font-size: 1em;
+  border: none;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+/* League Current Bowlers*/
+
+
+
+.current-bowlers-league{
+
+  border: #EFEFEF solid 2px;
+
+padding: 0px !important;
+}
+
+.bowlers-name{
+  padding: 7px !important;
+  font-size: 1.5em;
+}
+
+.buy-ticket{
+  padding: 5px !important;
+  background-color: #58bf44;
+  color: white;
+  font-size: 1em;
+  border: none;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+
+
+
+/** JACPOCK HISTORY **/
+.jackpot-history{
+  border: #EFEFEF solid 2px;
+  padding: 0px !important;
+}
+
+
+.ticket-history{
+  border: #EFEFEF solid 2px;
+  padding: 0 !important;
+}
+
+.history-box{
+  width: 100%;
+  height: 75px;
+  border-bottom: 2px solid rgb(204,204,204);
+
+}
+
+
+
+.box-jackpot {
+  padding-top: 10px !important;
+}
+
+/*CURRENT LEAGUE TICKETS*/
+
+.current-tickets-league{
+
+   padding: 0px !important;
+}
+
+.right-title{
+     border: #EFEFEF solid 2px;
+}
+
+
+.ticket-holder{
+  border: 2px solid rgb(38, 192, 190);
+  border-radius: 15px;
+  margin-top: 25px !important;
+  display: block;
+  width: 50%;
+  margin-left: 25% !important;
+}
+
+.holder{
+  padding: 0 !important;
+}
+
+
+

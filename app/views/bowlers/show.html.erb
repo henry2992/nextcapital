@@ -1,23 +1,41 @@
 
+<div class="bowler-title-name">
+	<h1>
+	  <%= @bowler.name %>
+	</h1>
+	<% if notice.kind_of?(Array) %>
+		<br>
+   		<%= flash[:notice].join(" ") %>
+	<% end %>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @bowler.name %>
-</p>
 
 
-<% if notice.kind_of?(Array) %>
 
-   <%= flash[:notice].join(" ") %>
-  
-<% end %>
+<!-- Section 2 -->
+
 
 <% @leagues.each do |l| %>
-    <p> League:<%= l.name %></p>
-    <%= button_to 'Join', {:controller => "memberships", :action => "join", :league_id => l.id, :bowler_id => @bowler} , :method=>:post  %>
+
+	<div id="league_<%= l.id %>" >
+
+            <div class="leagues col-sm-4"><!-- League Info -->
+
+              <div class="border">
+                <div class="leagues-holder">
+                  <%= image_tag("league1.jpg", :alt => "League") %>
+                  <div class="current-jackpot">Jackpot</div>
+                </div>
+                <div class="leagues-info">
+                  <h1><%= l.name %></h1>
+                  <p><%= l.content %></p>
+                </div>
+                      <%= button_to 'Join', {:controller => "memberships", :action => "join", :league_id => l.id, :bowler_id => @bowler} , :class =>"league-join-button", :method=>:post  %>
+                  
+              </div>
+
+            </div><!-- League Info -->
+          </div>
+    
 <% end %>
 
-
-	
-<%= link_to 'Edit', edit_bowler_path(@bowler) %> |
-<%= link_to 'Back', bowlers_path %>

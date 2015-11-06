@@ -1,0 +1,59 @@
+          <div id="league_<%= league.id %>" >
+
+            <div class="leagues col-sm-4"><!-- League Info -->
+
+              <div class="border">
+                <div class="leagues-holder">
+                  <%= image_tag("league1.jpg", :alt => "League") %>
+                  <div class="current-jackpot">Jackpot</div>
+                </div>
+                <div class="leagues-info">
+                  <h1><%= league.name %></h1>
+                  <p><%= league.content %></p>
+                </div>
+
+                  <div>
+                   
+                   <div class="league-login">
+                    <%= link_to 'Show League', league_path(league), :class => "league-login-link" %>
+                   </div>
+
+                      <button type="button" class="league-login league-login-button" data-toggle="modal" data-target="#myupdateleague_<%= league.id %>">
+                          Update
+                      </button>
+                   
+                  </div>
+                </div>
+
+            </div><!-- League Info -->
+
+
+            <!-- Modal - update posts -->
+                  <%= form_for(league) do |f| %>
+                  <div class="modal fade" id="myupdateleague_<%= league.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Update</h4>
+                      </div>
+                      <div class="modal-body">
+
+                      <div class="field">
+                        <%= f.label :name %><br>
+                        <%= f.text_area :name , class: "form-control" %>
+                      </div>
+                      <div class="field">
+                        <%= f.label :content %><br>
+                        <%= f.text_area :content, class: "form-control" %>
+                      </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" id="myupdatebutton_<%= league.id %>" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <%= submit_tag "Update", class: "btn btn-primary" %>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                  <% end %>

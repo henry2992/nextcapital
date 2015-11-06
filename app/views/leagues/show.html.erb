@@ -1,72 +1,131 @@
 
-<p id="notice"><%= notice %></p>
+<div class="container"  id="league-info-holder">
 
-
-<p>
-  <strong>Name:</strong>
-  <%= @league.name %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @league.content %>
-
-  <br>
-  Jackpot History
-
-  <% @league.jackpots.each do |j| %>
-      <tr>
-        <td><%= j.balance %></td>   
-        <br>
-      </tr>
-  <% end %>
- 
-  <p>This is the Jackpot to draw
-    <% current_jackpot = @league.jackpots.first %>
-    <%= current_jackpot.id %>
-    <%= button_to "Draw Winner",  {:controller => "leagues", :action => "draw", :jackpot_id => current_jackpot.id}, :method => :post %>
-  </p>
-
-
-   <% @league.jackpots.each do |t| %>
-     <% t.tickets.each do |x| %>
-        <tr>
-          <td>Ticket numero <%= x.id %></td>
-          <td>League ID:<%= x.league_id%></td>
-          <td>JAckpot ID:<%= x.jackpot_id%>
-          <td> Price: <%= x.price %></td>
-          <td> Status: <%= x.status %></td>
-          <td> Bowler:<%= x.name%></td>
-          <br>
-        </tr>
-    <% end %>
-  <% end %>
-
-</p>
-
-<% if notice.kind_of?(Array) %>
-
-  <p id="notice"><%= notice %></p>
-
-   <%= flash[:notice].join(" ") %>
   
-<% end %>
+    <div class="current-jackpot-league col-md-12">
+      <h1><%= @league.name %></h1>
+
+        
+      <p> Jackpot Balance: </p>
+      <p>
+        <% current_jackpot = @league.jackpots.first %>
+        <%= number_to_currency(current_jackpot.balance) %>  
+      </p>
+
+       <%= button_to "Draw Winner",  {:controller => "leagues", :action => "draw", :jackpot_id => current_jackpot.id}, :method => :post, :class => "draw-winner" %>
+
+      <% if notice.kind_of?(Array) %>
+
+         <%= flash[:notice].join(" ") %>
+        
+      <% end %>
+    </div>
+
+
+        <div class="holder col-sm-8">
+          <!-- CURRENT BOWLERS -->
+          <div >
+            
+            <div class="current-bowlers-league col-sm-12">
+              <h3 class="league-title">Bowlers in this League</h3>
+              
+                <%if @members.present? %>
+                  <% @members.each do |t| %>
+                  <div class="col-sm-4">
+                    <h6 class="bowlers-name"><%= t.name %> </h6>
+                    <%= button_to 'Buy Ticket', {:controller => "tickets", :action => "buy", :ticket_id => t.bowler_id , :league_id => @league, :jackpot_id => @jackpot_league.id} , :method=>:post, :class => "buy-ticket"  %>
+                    <br>
+                  </div>
+                  <% end %>
+                <%else%>
+                <div class="no-bowlers">
+                    <h3>No Bowlers have joined this League</h3>
+                    <%= link_to 'Join Bowlers', bowlers_path, :class => "draw-winner" %>
+                </div>
+                <%end%>
+                  
+                
+            </div>
+            <!-- HISTORY OF JACKPOTS -->
+                <div class="jackpot-history col-sm-6">
+                  <h3 class="league-title">Jackpot History</h3>
+
+                    <% @jackpots.each do |j| %>
+
+                       <% if (j == @jackpots.last ) == false %>
+                          <div class="history-box">
+                            <p class="box-jackpot">Jackpot id: <%= j.id%> 
+                            <br>
+                              PayOut:<%= j.payout %> 
+                            <br>
+                              Balance:<%= j.balance %> 
+                            </p> 
+                            <br>
+                        </div>
+                       <% end %>
+                    <% end %>
+                </div>
+
+                
+                <!-- HISTORY OF WINNING TICKETS -->
+                 <div class="ticket-history col-sm-6">
+                  <h3 class="league-title">History of Winning Tickets</h3>
+
+                       <% @tickets.each do |x| %>
+
+                         <%if x.status == true %>
+                            <div class="history-box">
+                              <p>
+                                Ticket number <%= x.id %>
+                                <br>
+                                Price: <%= x.price %>
+                                <br>
+                                Winner: <%= x.name%>
+                                <br>
+                                Strike: <%= x.strike%>
+                              </p>
+                                <br>
+                            </div> 
+                        <% end %>
+                      <% end %>
+                  </div>
+            </div>
+        </div>
+
+          <!-- CURRENT TICKETS LEAGUE -->
+          <div class="current-tickets-league col-sm-4">
+            <h3 class="league-title right-title">Current Tickets in League</h3>
+
+                    
+                        <% @tickets.each  do |x| %>
+                            <%if x.status == false %>
+                              
+                              <p class="ticket-holder">
+                              Ticket number <%= x.id %>
+                              <br>
+                              Price: <%= x.price %>
+                              <br>
+                              Bowler Name:<%= x.name%>
+                              </p>
+                              <br>
+                            <% end %>  
+                            
+                        <% end %> 
+
+
+
+          </div>
+
+
+          
+          
+
+         
+</div>
 
 
 
 
-<% @members.each do |t| %>
-  
-        <tr>
-          <td>Numero de Membresia: <%= t.id %></td>
-          <td>Numero de Liga: <%= t.league_id %></td>
-          <td>Numero de Bowler: <%= t.bowler_id %></td>
-          <td>Nombre del bowler: <%= t.name %></td>
-           <td><%= button_to 'Buy Ticket', {:controller => "tickets", :action => "buy", :ticket_id => t.bowler_id , :league_id => @league} , :method=>:post  %></td>
-          <br>
-        </tr>
-  
-  <% end %>
 
 
 
@@ -74,11 +133,6 @@
 
 
 
-
-
-
-<%= link_to 'Edit', edit_league_path(@league) %> |
-<%= link_to 'Back', leagues_path %>
 
 
 

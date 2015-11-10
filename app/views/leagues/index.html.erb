@@ -1,13 +1,15 @@
 
     <div class="container">
 
+      
 
         <!-- Section 1 App -->
         <div id="league-section-info">
           <h1 >Ready to have fun? </h1>
           <h4> Create your own League, add bowlers, buy tickets and get the change to win the Jackpot.
           </h4>
-          
+           <p id="notice"><%= notice %></p>
+              
         </div>
         <div class="line-section"></div>
 
@@ -16,6 +18,7 @@
           <button type="button" class="create-btn btn-large" data-toggle="modal" data-target="#mynewleague">
             New League
           </button>
+
           <%= render @leagues %>
 
         </div>

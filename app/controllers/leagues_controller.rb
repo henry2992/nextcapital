@@ -1,28 +1,26 @@
 class LeaguesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!  #Authenticate User before getting it
   before_action :set_league, only: [:show, :edit, :update, :destroy]
 
   # GET /leagues
   # GET /leagues.json
   def index
     @leagues = League.all
-    @league = League.new
+    @league = League.new #Create user in index
   end
 
   # GET /leagues/1
   # GET /leagues/1.json
   def show
-    @league = League.find(params[:id])
+    @league = League.find(params[:id]) #Find the League to show.
 
-    @jackpot_league = @league.jackpots.first
+    @jackpot_league = @league.jackpots.first #Find the first jackpot related to the League
 
-    @jackpots = @league.jackpots.recent_jackpot
+    @jackpots = @league.jackpots.recent_jackpot #Find all the Jackpots and order them
 
-    @jackpot = Jackpot.find(params[:id])
+    @tickets = @league.tickets.recent_tickets #Find all the Tickets in League and Orden Them
 
-    @tickets = @league.tickets.recent_tickets
-
-    @members = @league.memberships
+    @members = @league.memberships #Find League Memberships
   end
 
   # GET /leagues/new
@@ -46,11 +44,8 @@ class LeaguesController < ApplicationController
         @jackpot = @league.jackpots.create(jackpot_params)
         format.html { redirect_to leagues_path, notice: 'League was successfully created.' }
         format.json { render :show, status: :created, location: @league }
-
       else
-        format.html { render :new }
-        format.json { render json: @league.errors, status: :unprocessable_entity }
-
+        format.html { redirect_to leagues_path, notice: 'League was not created.Please name your League first.' }
       end
     end
   end
@@ -63,8 +58,8 @@ class LeaguesController < ApplicationController
         format.html { redirect_to leagues_path, notice: 'League was successfully updated.' }
         format.json { render :show, status: :ok, location: @league} 
       else
-        format.html { render :edit }
-        format.json { render json: @league.errors, status: :unprocessable_entity }
+        format.html { redirect_to leagues_path, notice: 'League was not updated.Please name your League first.' }
+
       end
     end
 
@@ -81,14 +76,26 @@ class LeaguesController < ApplicationController
   end
  
 
+  # Function to Draw Winner
   def draw
-    @league = League.find(params[:id])
+    @league = League.find(params[:id]) #Current League
 
-    @jackpot = Jackpot.find(params[:jackpot_id])
+    @jackpot = Jackpot.find(params[:jackpot_id]) #Get Current Jackpot
+    
+    @winner = Ticket.pick_winner(@jackpot.id) #Get all the Tickets and Pick a Winner
+    
     
 
-    @winner = Ticket.pick_winner(@jackpot.id)
-    
+    # If there is a Wiining ticket
+    if @winner.present?
+      @new_jackpot = Jackpot.new #Create a new Jackpot
+      @new_jackpot.league_id = @league.id #The new Jackpot will belong to the League 
+      @new_jackpot.balance = @winner[2] #Set balance to Old Balnce (Ticket Model)
+      @new_jackpot.payout = @winner[3] #Set the Payout to the Winning_price (Ticket Model)
+      @new_jackpot.save
+    end
+
+    # If there is a Winner Notify with a flash Message, if not notify that there are no Tickets in the jackpot. 
     if @winner.present?
       @win_bowler = bowler_winner(@winner[0].bowler_id)
       flash[:notice] = ["The winning Ticket id is: "]
@@ -101,17 +108,10 @@ class LeaguesController < ApplicationController
       flash[:notice] = ["There is no tickets in the current Jackpot"]
     end
 
-    if @winner.present?
-      @new_jackpot = Jackpot.new
-      @new_jackpot.league_id = @league.id
-      @new_jackpot.balance = @winner[2]
-      @new_jackpot.payout = @winner[3]
-      @new_jackpot.save
-    end
-
     redirect_to @league
   end
 
+  # Get the Info from the Bowler who won. 
   def bowler_winner(id)
     win_bowler = Bowler.find_by_id(id) 
     return win_bowler
@@ -128,12 +128,6 @@ class LeaguesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def league_params
       params.require(:league).permit(:name, :content, :membership_id)
-    end
-
-    
-
-    def jackpot_params
-      params.require(:league).permit(:balance)
     end
 
 end

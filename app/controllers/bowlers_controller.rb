@@ -1,5 +1,7 @@
 class BowlersController < ApplicationController
+
   before_action :set_bowler, only: [:show, :edit, :update, :destroy]
+  
 
   # GET /bowlers
   # GET /bowlers.json
@@ -12,8 +14,6 @@ class BowlersController < ApplicationController
   # GET /bowlers/1.json
   def show
     @leagues = League.all
-
-
   end
 
   # GET /bowlers/new
@@ -32,11 +32,10 @@ class BowlersController < ApplicationController
 
     respond_to do |format|
       if @bowler.save
-        format.html { redirect_to @bowler, notice: 'Bowler was successfully created.' }
+        format.html { redirect_to bowlers_path, notice: 'Bowler was successfully created.' }
         format.json { render :show, status: :created, location: @bowler }
       else
-        format.html { render :new }
-        format.json { render json: @bowler.errors, status: :unprocessable_entity }
+        format.html { redirect_to bowlers_path, notice: 'Bowler was not created. You need to name your bowler.' }
       end
     end
   end
@@ -49,8 +48,7 @@ class BowlersController < ApplicationController
         format.html { redirect_to bowlers_path, notice: 'Bowler was successfully updated.' }
         format.json { render :show, status: :ok, location: @bowler }
       else
-        format.html { render :edit }
-        format.json { render json: @bowler.errors, status: :unprocessable_entity }
+        format.html { redirect_to bowlers_path, notice: 'Bowler was not updated. You need to name your bowler.' }
       end
     end
   end

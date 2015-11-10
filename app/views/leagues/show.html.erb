@@ -19,6 +19,7 @@
          <%= flash[:notice].join(" ") %>
         
       <% end %>
+      
     </div>
 
 
@@ -56,9 +57,9 @@
                           <div class="history-box">
                             <p class="box-jackpot">Jackpot id: <%= j.id%> 
                             <br>
-                              PayOut:<%= j.payout %> 
+                              PayOut:<%= number_to_currency(j.payout) %> 
                             <br>
-                              Balance:<%= j.balance %> 
+                              Balance:<%= number_to_currency(j.balance) %> 
                             </p> 
                             <br>
                         </div>
@@ -78,7 +79,7 @@
                               <p>
                                 Ticket number <%= x.id %>
                                 <br>
-                                Price: <%= x.price %>
+                                Winning Price: <%= number_to_currency(x.price) %>
                                 <br>
                                 Winner: <%= x.name%>
                                 <br>
@@ -103,7 +104,7 @@
                               <p class="ticket-holder">
                               Ticket number <%= x.id %>
                               <br>
-                              Price: <%= x.price %>
+                              Price: <%= number_to_currency(x.price) %>
                               <br>
                               Bowler Name:<%= x.name%>
                               </p>

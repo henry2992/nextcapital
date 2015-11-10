@@ -1,2 +1,44 @@
 == NEXT CAPITAL JACKPOT BOWLING GAME 
 
+This is the repository for NextCapital Challenge.
+
+The app has been build using ruby on rails for the back end and bootstrap, html, css for the frond end.
+
+The project can be found live at: http://nextcapitalhenry2992.herokuapp.com
+
+== GAME EXPLANATION
+
+The following are instructions to play the Next Capital Jackpot Bowling Game
+
+•	Any User can join the game by entering an email and password.
+•	The User then can create Leagues and Bowlers.
+•	The user can join a bowler to a League.
+•	A bowler can buy tickets for the League
+•	Each Ticket cost $10 that goes to the League’s Jackpot.
+•	The user can Draw a winning ticket.
+•	The owner of the ticket gets to roll if the result is 10, the bowler will take all the Jackpot if the result of the roll is different, the user will take half of the Jackpot.
+•	 The Game will record the History of Jackpot and Winning Tickets.
+
+== SYSTEM 
+
+Currently the App let user: 
+•	Sign Up
+•	Log in 
+•	Create a New League and assign a Name and a Description to it
+•	Create Bowlers and Join them to League through memberships.
+•	Let a league’s bowlers buy Tickets for the current Jackpot.
+•	View the tickets bought for the current Jackpot
+•	Draw a Winning Ticket for the Jackpot
+•	Record the Results of the Jackpot Roll (History of Winning Tickets)
+•	View the History of the League’s Jackpots
+
+== TECHNOLOGY
+
+The Technology used in this app is the following:
+•	Ruby on Rails
+•	Bootstrap
+•	Html
+•	Css
+•	The login and Sign Up is managed by the Gem Device
+
+

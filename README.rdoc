@@ -10,8 +10,8 @@ The project can be found live at: http://nextcapitalhenry2992.herokuapp.com
 
 The following are instructions to play the Next Capital Jackpot Bowling Game
 
-•	Any User can join the game by entering an email and password.
-•	The User then can create Leagues and Bowlers.
+* Any User can join the game by entering an email and password.
+* The User then can create Leagues and Bowlers.
 •	The user can join a bowler to a League.
 •	A bowler can buy tickets for the League
 •	Each Ticket cost $10 that goes to the League’s Jackpot.

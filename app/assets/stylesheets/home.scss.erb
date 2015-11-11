@@ -30,7 +30,6 @@ h1, h2, h3, h4, h5, h6, p {
   width: 100vw;
   height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<%= asset_path('bg.jpg')%>);
-
   background-position: center center;
   background-repeat: none;
   -webkit-background-size: cover;
@@ -42,14 +41,19 @@ h1, h2, h3, h4, h5, h6, p {
 
 #login-box{
   background-color: rgba(255, 255, 255, 0.7);
-  width: 50%;
-  margin-left: 25%;
+  width: 90%;
+  margin-left: 5%;
   height: auto;
-  margin-top: 70px;
+  margin-top: 30px;
   text-align: center;
+
+  h1{
+    font-size: 1.5em;
+  }
+  h3{
+    font-size: 1em;
+  }
 }
-
-
 
 #logo{
   margin-top: 25px;
@@ -99,6 +103,7 @@ h1, h2, h3, h4, h5, h6, p {
   text-transform: uppercase;
   color: white;
   width: 128px;
+  margin: 10px 0 20px 0;
 }
 
 
@@ -112,5 +117,49 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 
+/************ MEDIA QUERIES ******************/
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+
+}
+
+
+/* Tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) {
+  
+  #login-box{
+    width: 50%;
+    margin-left: 25%;
+    height: auto;
+    margin-top: 70px;
+    text-align: center;
+    h1{
+      font-size: 2.5em;
+    }
+    h3{
+      font-size: 2em;
+    }
+  }
+
+
+
+  
+
+}
+
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 992px) {
+
+  
+
+
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+/* Styles */
+}
 
 

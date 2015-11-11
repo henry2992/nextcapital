@@ -7,7 +7,7 @@
 	height: auto;
 	border: 1px grey solid;
 	text-align: center;
-	width: 30% !important;
+	/*width: 30% !important;*/
 	margin-left: 2.5%;
 	margin-top: 25px;
 	margin-bottom: 10px;
@@ -69,13 +69,53 @@
 
 .no-bowlers{
 	height: 100px;
-}
-.no-bowlers h3{
+	
+	h3{
 	margin: 25px 0 25px 0 !important;
+	}
 }
 
 .draw-winner:hover{
 	color: white;
 	text-decoration: none;
+}
+
+
+
+/************ MEDIA QUERIES ******************/
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+
+}
+
+
+/* Tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) {
+  
+  .bowlers{
+	
+	width: 30% !important;
+
+	}
+
+
+
+  
+
+}
+
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 992px) {
+
+  
+
+
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+/* Styles */
 }
 
